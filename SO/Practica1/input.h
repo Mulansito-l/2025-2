@@ -3,16 +3,15 @@
 
 int leerEnteroPositivo(const char* prompt){
     int num = 0;
-    int* leido = (int*)malloc(sizeof(int));
+    int leido;
     printf("%s\n", prompt);
-    scanf("%d",leido);
-    while(*leido < 0){
+    scanf("%d",&leido);
+    while(leido < 0){
         printf("%s\n", prompt);
-        scanf("%d",leido);
+        scanf("%d",&leido);
     }
     
-    num = *leido;
-    free(leido);
+    num = leido;
     return num;
 };
 

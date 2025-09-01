@@ -21,6 +21,7 @@ typedef struct{
 Nodo* insertar(Lista* lista){
     Nodo* actual = lista->head;
     Nodo* nodo = (Nodo*) malloc(sizeof(Nodo));
+    nodo->siguiente = nullptr;
 
     if(lista->head == nullptr){
         lista->head = nodo;
@@ -39,6 +40,12 @@ int eliminar(Lista* lista, int pos){
     int contador = 0;
     Nodo* actual = lista->head;
     Nodo* anterior = nullptr;
+
+    if (pos == 0) {
+        lista->head = actual->siguiente;
+        free(actual);
+        return 0;
+    }
 
     while(actual != nullptr){
         if(contador == pos){
@@ -71,4 +78,15 @@ void mostrar(Lista* lista){
         printf("ID: %d\n\n", c.id);
         actual = actual->siguiente;
     }
+}
+
+void borrar(Lista* lista){
+    Nodo* actual = lista->head;
+    Nodo* siguiente;
+    while(actual != NULL){
+        siguiente = actual->siguiente;
+        free(actual);
+        actual = siguiente;
+    }
+    lista->head = NULL;
 }
